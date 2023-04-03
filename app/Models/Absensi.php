@@ -6,15 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Wisata extends Model
+class Absensi extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-      'nama_wisata',
-      'deskripsi_wisata',
-      'jadwal_buka',
-      'jadwal_tutup',
-      'harga_wisata'
-    ];
+      'pegawai_id',
+      'jadwal_masuk',
+      'jadwal_keluar'
+  ];
+
+  public function pegawai() {
+    return $this->hasMany(Pegawai::class, 'id', 'pegawai_id');
+  }
 }
