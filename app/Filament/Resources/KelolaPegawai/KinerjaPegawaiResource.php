@@ -62,7 +62,6 @@ class KinerjaPegawaiResource extends Resource
     {
         return [
             'index' => Pages\ListKinerjaPegawais::route('/'),
-            'edit' => Pages\EditKinerjaPegawai::route('/{record}/edit'),
         ];
     }    
 }

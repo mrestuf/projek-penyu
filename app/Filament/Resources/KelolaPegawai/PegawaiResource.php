@@ -13,6 +13,7 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
 
 class PegawaiResource extends Resource
 {
@@ -29,7 +30,12 @@ class PegawaiResource extends Resource
             ->schema([
               Card::make([
                 Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('password')->required()->password(),
+                Forms\Components\TextInput::make('password')
+                  ->password()
+                  ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                  ->dehydrated(fn ($state) => filled($state))
+                  ->required(fn (string $context): bool => $context === 'create')
+                  ->hidden(fn (string $context): bool => $context !== 'create'),
                 Forms\Components\TextInput::make('divisi')->required(),
                 Forms\Components\TextInput::make('jabatan')->required(),
               ])
@@ -68,9 +74,7 @@ class PegawaiResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPegawais::route('/'),
-            'create' => Pages\CreatePegawai::route('/create'),
-            'edit' => Pages\EditPegawai::route('/{record}/edit'),
+            'index' => Pages\ListPegawais::route('/')
         ];
     }
 }

@@ -66,9 +66,7 @@ class PekerjaanResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPekerjaans::route('/'),
-            'create' => Pages\CreatePekerjaan::route('/create'),
-            'edit' => Pages\EditPekerjaan::route('/{record}/edit'),
+            'index' => Pages\ListPekerjaans::route('/')
         ];
     }    
 }

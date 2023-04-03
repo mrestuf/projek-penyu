@@ -76,7 +76,6 @@ class WisataResource extends Resource
     {
         return [
             'index' => Pages\ListWisatas::route('/'),
-            'edit' => Pages\EditWisata::route('/{record}/edit'),
         ];
     }    
 }
