@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Filament\Resources\KelolaPegawai;
+namespace App\Filament\Resources\KelolaWisata;
 
-use App\Filament\Resources\KelolaPegawai\KinerjaPegawaiResource\Pages;
-use App\Filament\Resources\KelolaPegawai\KinerjaPegawaiResource\RelationManagers;
-use App\Models\Kinerja;
+use App\Filament\Resources\KelolaWisata\PemesananResource\Pages;
+use App\Filament\Resources\KelolaWisata\PemesananResource\RelationManagers;
+use App\Models\Pemesanan;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Grid;
@@ -15,14 +15,14 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class KinerjaPegawaiResource extends Resource
+class PemesananResource extends Resource
 {
-    protected static ?string $model = Kinerja::class;
+    protected static ?string $model = Pemesanan::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
-    protected static ?string $navigationGroup = 'Kelola Pegawai';
-    protected static ?string $navigationLabel = 'Data Kinerja Pegawai';
-    protected static ?string $pluralModelLabel = 'Data Kinerja Pegawai';
+    protected static ?string $navigationGroup = 'Kelola Wisata';
+    protected static ?string $navigationLabel = 'Pemesanan Wisata';
+    protected static ?string $pluralModelLabel = 'Pemesanan Wisata';
 
     public static function form(Form $form): Form
     {
@@ -36,9 +36,11 @@ class KinerjaPegawaiResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('pekerjaan_id')->label('Nama Pegawai'),
-                Tables\Columns\TextColumn::make('pegawai_id')->label('Nama Pekerjaan'),
-                Tables\Columns\TextColumn::make('deskripsi_pekerjaan')->label('Deskripsi Pekerjaan'),
+                Tables\Columns\TextColumn::make('wisata_id')->label('Nama Wisata'),
+                Tables\Columns\TextColumn::make('wisatawan_id')->label('Nama Wisatawan'),
+                Tables\Columns\TextColumn::make('status')->label('Status'),
+                Tables\Columns\TextColumn::make('created_at')->label('Created At'),
+                Tables\Columns\TextColumn::make('updated_at')->label('Updated At'),
             ])
             ->filters([
                 //
@@ -61,7 +63,7 @@ class KinerjaPegawaiResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListKinerjaPegawais::route('/'),
+            'index' => Pages\ListPemesanans::route('/'),
         ];
     }
 }

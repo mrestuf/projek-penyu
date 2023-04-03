@@ -35,9 +35,9 @@ class AbsensiResource extends Resource
     {
         return $table
             ->columns([
-              Tables\Columns\TextColumn::make('pegawai.name')->label('Nama Pegawai')->searchable()->sortable(),
-              Tables\Columns\TextColumn::make('jadwal_masuk')->label('Jadwal Masuk'),
-              Tables\Columns\TextColumn::make('jadwal_keluar')->label('Jadwal Keluar'),
+                Tables\Columns\TextColumn::make('pegawai.name')->label('Nama Pegawai')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('jadwal_masuk')->label('Jadwal Masuk'),
+                Tables\Columns\TextColumn::make('jadwal_keluar')->label('Jadwal Keluar'),
             ])
             ->filters([
                 //
@@ -49,18 +49,18 @@ class AbsensiResource extends Resource
                 //
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
-          //
+            //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListAbsensis::route('/')
         ];
-    }    
+    }
 }
