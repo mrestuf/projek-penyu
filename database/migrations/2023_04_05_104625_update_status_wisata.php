@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pemesanans', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('wisata_id')->constrained()->onDelete('cascade');
-            $table->string('status');
-            $table->timestamps();
+        Schema::table('crowdfundings', function(Blueprint $table) {
+          $table->string('status')->default('pending')->change();
         });
     }
 
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pemesanans');
+        //
     }
 };

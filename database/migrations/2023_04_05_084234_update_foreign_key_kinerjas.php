@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pemesanans', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('wisata_id')->constrained()->onDelete('cascade');
-            $table->string('status');
-            $table->timestamps();
-        });
+      Schema::table('kinerjas', function(Blueprint $table) {
+        $table->foreignId('pegawai_id')->change()->constrained()->onDelete('cascade');
+        $table->foreignId('pekerjaan_id')->change()->constrained()->onDelete('cascade');
+      });
     }
 
     /**
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pemesanans');
+        //
     }
 };

@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pemesanans', function (Blueprint $table) {
+        Schema::create('crowdfundings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('wisata_id')->constrained()->onDelete('cascade');
+            $table->string('nama_pengembangan_wisata');
+            $table->integer('target_pengembangan');
+            $table->integer('total_pengembangan')->default(0);
             $table->string('status');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pemesanans');
+        Schema::dropIfExists('crowdfundings');
     }
 };
