@@ -8,15 +8,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Absensi extends Model
 {
-    use HasFactory, SoftDeletes;
+  use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-      'pegawai_id',
-      'jadwal_masuk',
-      'jadwal_keluar'
+  protected $fillable = [
+    'pegawai_id',
+    'jadwal_masuk',
+    'jadwal_keluar'
   ];
 
-  public function pegawai() {
+  public function pegawai()
+  {
     return $this->hasMany(Pegawai::class, 'id', 'pegawai_id');
   }
 }

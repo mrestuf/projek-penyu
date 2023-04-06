@@ -28,17 +28,17 @@ class PegawaiResource extends Resource
     {
         return $form
             ->schema([
-              Card::make([
-                Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('password')
-                  ->password()
-                  ->dehydrateStateUsing(fn ($state) => Hash::make($state))
-                  ->dehydrated(fn ($state) => filled($state))
-                  ->required(fn (string $context): bool => $context === 'create')
-                  ->hidden(fn (string $context): bool => $context !== 'create'),
-                Forms\Components\TextInput::make('divisi')->required(),
-                Forms\Components\TextInput::make('jabatan')->required(),
-              ])
+                Card::make([
+                    Forms\Components\TextInput::make('name')->required(),
+                    Forms\Components\TextInput::make('password')
+                        ->password()
+                        ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                        ->dehydrated(fn ($state) => filled($state))
+                        ->required(fn (string $context): bool => $context === 'create')
+                        ->hidden(fn (string $context): bool => $context !== 'create'),
+                    Forms\Components\TextInput::make('divisi')->required(),
+                    Forms\Components\TextInput::make('jabatan')->required(),
+                ])
             ]);
     }
 
@@ -53,7 +53,7 @@ class PegawaiResource extends Resource
                 Tables\Columns\TextColumn::make('updated_at')->label('Updated At'),
             ])
             ->filters([
-              //
+                //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -63,14 +63,14 @@ class PegawaiResource extends Resource
                 //
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [

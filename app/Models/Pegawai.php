@@ -8,16 +8,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pegawai extends Model
 {
-    use HasFactory, SoftDeletes;
+  use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-      'name',
-      'divisi',
-      'jabatan',
-      'password'
-    ];
+  protected $fillable = [
+    'name',
+    'divisi',
+    'jabatan',
+    'password'
+  ];
 
-  public function absensi() {
+  public function absensi()
+  {
     return $this->belongsTo(Absensi::class, 'pegawai_id', 'id');
   }
 }
