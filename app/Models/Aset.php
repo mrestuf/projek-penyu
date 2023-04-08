@@ -19,4 +19,9 @@ class Aset extends Model
         'sumber_dana',
         'qrcode'
     ];
+
+    public function barang()
+    {
+        return $this->hasMany(Barang::class, 'id', 'barang_id');
+    }
 }

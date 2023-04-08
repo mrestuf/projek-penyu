@@ -15,8 +15,13 @@ class Barang extends Model
         'tahun_perolehan'
     ];
 
-    public function barang()
+    public function kategori_barang()
     {
-        return $this->belongsTo(Aset::class, 'barang_id', 'id');
+        return $this->hasMany(KategoriBarang::class, 'id', 'kategori_barang_id');
+    }
+
+    public function aset()
+    {
+        return $this->belongsTo(Aset::class, 'id', 'barang_id');
     }
 }

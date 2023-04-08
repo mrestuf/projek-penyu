@@ -29,8 +29,12 @@ class KategoriBarangResource extends Resource
         return $form
             ->schema([
                 Card::make([
-                    Forms\Components\TextInput::make('kode_kategori')->label('Kode Kategori')->required(),
-                    Forms\Components\TextInput::make('nama_kategori')->label('Nama Kategori')->required()->numeric(),
+                    Forms\Components\TextInput::make('kode_kategori')
+                        ->placeholder('BHN')
+                        ->required(),
+                    Forms\Components\TextInput::make('nama_kategori')
+                        ->placeholder('Bahan')
+                        ->required(),
                 ])
             ]);
     }
@@ -41,8 +45,6 @@ class KategoriBarangResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('kode_kategori')->label('Kode Kategori'),
                 Tables\Columns\TextColumn::make('nama_kategori')->label('Nama Kategori'),
-                Tables\Columns\TextColumn::make('created_at')->label('Created At'),
-                Tables\Columns\TextColumn::make('updated_at')->label('Updated At'),
             ])
             ->filters([
                 //

@@ -27,10 +27,10 @@ class PengembanganWisataResource extends Resource
     {
         return $form
             ->schema([
-              Card::make([
-                Forms\Components\TextInput::make('nama_pengembangan_wisata'),
-                Forms\Components\TextInput::make('target_pengembangan'),
-              ])
+                Card::make([
+                    Forms\Components\TextInput::make('nama_pengembangan_wisata'),
+                    Forms\Components\TextInput::make('target_pengembangan'),
+                ])
             ]);
     }
 
@@ -42,12 +42,12 @@ class PengembanganWisataResource extends Resource
                 Tables\Columns\TextColumn::make('target_pengembangan')->label('Target Pengembangan'),
                 Tables\Columns\TextColumn::make('total_pengembangan')->label('total_pengembangan'),
                 Tables\Columns\SelectColumn::make('status')
-                  ->label('total_pengembangan')
-                  ->options([
-                  'pending' => 'Pending',
-                  'progress' => 'Progress',
-                  'success' => 'Success',
-                  ])->disablePlaceholderSelection(),
+                    ->label('total_pengembangan')
+                    ->options([
+                        'pending' => 'Pending',
+                        'progress' => 'Progress',
+                        'success' => 'Success',
+                    ])->disablePlaceholderSelection(),
                 Tables\Columns\TextColumn::make('created_at')->label('Created At'),
                 Tables\Columns\TextColumn::make('updated_at')->label('Updated At'),
             ])
@@ -62,18 +62,18 @@ class PengembanganWisataResource extends Resource
                 // Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListPengembanganWisatas::route('/'),
         ];
-    }    
+    }
 }
