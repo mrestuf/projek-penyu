@@ -106,7 +106,7 @@ class AsetResource extends Resource
         return [
             'index' => Pages\ListAsets::route('/'),
             'create' => Pages\CreateAset::route('/create'),
-            'view' => Pages\ViewAset::route('/{record}'),
+            'view' => Pages\ViewAset::route('{record}'),
             'edit' => Pages\EditAset::route('/{record}/edit'),
         ];
     }
