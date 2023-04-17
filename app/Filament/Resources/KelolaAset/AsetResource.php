@@ -6,6 +6,7 @@ use App\Filament\Resources\KelolaAset\AsetResource\Pages;
 use App\Filament\Resources\KelolaAset\AsetResource\RelationManagers;
 use App\Models\Aset;
 use App\Models\Barang;
+use App\Models\Lokasi;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Grid;
@@ -16,6 +17,7 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Select;
+use Filament\Tables\Actions\Action;
 
 
 class AsetResource extends Resource
@@ -36,6 +38,9 @@ class AsetResource extends Resource
                     ->required(),
                 Forms\Components\Select::make('nama_barang')
                     ->options(Barang::all()->pluck('nama_barang', 'id')->toArray())
+                    ->disablePlaceholderSelection(),
+                Forms\Components\Select::make('nama_lokasi')
+                    ->options(Lokasi::all()->pluck('nama_lokasi', 'id')->toArray())
                     ->disablePlaceholderSelection(),
                 Forms\Components\TextInput::make('volume')
                     ->placeholder('10')
@@ -88,6 +93,9 @@ class AsetResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\ViewAction::make(),
+                // Tables\Actions\ViewAction::make('view')
+                // ->url(fn (Aset $record): string => route('asets.view', ['aset' => $record]))
+                // ->openUrlInNewTab(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

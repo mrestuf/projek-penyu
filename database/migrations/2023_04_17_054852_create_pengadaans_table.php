@@ -13,18 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('asets', function (Blueprint $table) {
+        Schema::create('pengadaans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('barang_id')->constrained()->onDelete('cascade');
-            $table->string('kode_aset');
+            $table->foreignId('lokasi_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('nama_aset');
+            $table->string('tahun_pengadaan');
+            $table->integer('harga_satuan');
             $table->integer('volume');
             $table->string('satuan');
-            $table->string('kondisi');
-            $table->integer('umur_ekonomis');
-            $table->integer('nilai_aset');
-            $table->string('sumber_dana');
-            $table->string('qrcode');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -35,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asets');
+        Schema::dropIfExists('pengadaans');
     }
 };

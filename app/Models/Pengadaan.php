@@ -6,26 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Aset extends Model
+class Pengadaan extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'kode_aset',
-        'barang_id',
         'lokasi_id',
+        'user_id',
+        'nama_aset',
+        'tahun_pengadaan',
+        'harga_satuan',
         'volume',
         'satuan',
-        'kondisi',
-        'umur_ekonomis',
-        'nilai_aset',
-        'sumber_dana',
-        'qrcode'
     ];
 
-    public function barang()
+    public function user()
     {
-        return $this->hasMany(Barang::class, 'id', 'barang_id');
+        return $this->hasMany(User::class, 'id', 'user_id');
     }
 
     public function lokasi()
