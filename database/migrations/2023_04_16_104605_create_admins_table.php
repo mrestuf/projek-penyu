@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pemesanans', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('wisata_id')->constrained()->onDelete('cascade');
-            $table->string('status');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pemesanans');
+        Schema::dropIfExists('admins');
     }
 };

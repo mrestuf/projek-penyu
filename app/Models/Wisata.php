@@ -11,10 +11,8 @@ class Wisata extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-      'nama_wisata',
-      'deskripsi_wisata',
-      'jadwal_buka',
-      'jadwal_tutup',
-      'harga_wisata'
+      'name_wisatas',
+      'description',
+      'harga'
     ];
 }

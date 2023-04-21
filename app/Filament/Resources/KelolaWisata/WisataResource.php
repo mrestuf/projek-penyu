@@ -30,13 +30,9 @@ class WisataResource extends Resource
         return $form
             ->schema([
                 Card::make([
-                    Forms\Components\TextInput::make('nama_wisata')->label('Nama Wisata')->required(),
-                    Forms\Components\RichEditor::make('deskripsi_wisata')->label('Deskripsi Wisata')->required(),
-                    Grid::make()->schema([
-                        Forms\Components\TimePicker::make('jadwal_buka')->label('Jam Buka')->required(),
-                        Forms\Components\TimePicker::make('jadwal_tutup')->label('Jam Tutup')->required(),
-                    ]),
-                    Forms\Components\TextInput::make('harga_wisata')->label('Harga Tiket')->required()->numeric(),
+                    Forms\Components\TextInput::make('name_wisatas')->label('Nama Wisata')->required(),
+                    Forms\Components\RichEditor::make('description')->label('Deskripsi Wisata')->required(),
+                    Forms\Components\TextInput::make('harga')->label('Harga Tiket')->required()->numeric(),
                 ])
             ]);
     }
@@ -45,11 +41,9 @@ class WisataResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama_wisata')->label('Nama Wisata'),
-                Tables\Columns\TextColumn::make('deskripsi_wisata')->html(),
-                Tables\Columns\TextColumn::make('jadwal_buka')->label('Jadwal Buka'),
-                Tables\Columns\TextColumn::make('jadwal_tutup')->label('Jadwal Tutup'),
-                Tables\Columns\TextColumn::make('harga_wisata')->label('Harga Wisata'),
+                Tables\Columns\TextColumn::make('name_wisatas')->label('Nama Wisata'),
+                Tables\Columns\TextColumn::make('description')->limit(50),
+                Tables\Columns\TextColumn::make('harga')->label('Harga Wisata'),
                 Tables\Columns\TextColumn::make('created_at')->label('Created At'),
                 Tables\Columns\TextColumn::make('updated_at')->label('Updated At'),
             ])

@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('wisatas', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_wisata');
-            $table->string('deskripsi_wisata');
-            $table->string('jadwal_buka');
-            $table->string('jadwal_tutup');
-            $table->string('harga_wisata');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('transaction_id')->unique();
+            $table->string('external_id')->unique();
+            $table->string('status');
+            $table->integer('amount');
+            $table->string('link_payment');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wisatas');
+        Schema::dropIfExists('transactions');
     }
 };
