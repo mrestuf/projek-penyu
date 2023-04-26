@@ -8,11 +8,14 @@
         "php": "^8.0.2",
         "filament/filament": "^2.17",
         "guzzlehttp/guzzle": "^7.2",
+        "jantinnerezo/livewire-alert": "^2.2",
         "laravel-frontend-presets/tall": "^5.0.3",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "livewire/livewire": "^2.12"
+        "livewire/livewire": "^2.12",
+        "nesbot/carbon": "^2.66",
+        "xendit/xendit-php": "^2.19"
     },
     "require-dev": {
         "doctrine/dbal": "^3.6",

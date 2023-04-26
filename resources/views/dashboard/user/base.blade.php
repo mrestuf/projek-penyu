@@ -21,9 +21,13 @@
 </head>
 <body>
   @include('layouts.header')
-
-  <main>
-    @yield('content')
+  
+  
+  <main class="flex lg:flex-row flex-col container mx-auto my-5 px-5 lg:px-0">
+    @include('dashboard.user.layouts.sidebar')
+    <div class="ml-0 lg:ml-10 w-full">
+      @yield('content')
+    </div>
   </main>
 
   @include('layouts.footer')

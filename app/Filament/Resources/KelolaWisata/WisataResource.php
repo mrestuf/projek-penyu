@@ -6,13 +6,10 @@ use App\Filament\Resources\KelolaWisata\WisataResource\Pages;
 use App\Filament\Resources\KelolaWisata\WisataResource\RelationManagers;
 use App\Models\Wisata;
 use Filament\Forms;
-use Filament\Forms\Components\Card;
-use Filament\Forms\Components\Grid;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -29,15 +26,12 @@ class WisataResource extends Resource
     {
         return $form
             ->schema([
-                Card::make([
-                    Forms\Components\TextInput::make('nama_wisata')->label('Nama Wisata')->required(),
-                    Forms\Components\RichEditor::make('deskripsi_wisata')->label('Deskripsi Wisata')->required(),
-                    Grid::make()->schema([
-                        Forms\Components\TimePicker::make('jadwal_buka')->label('Jam Buka')->required(),
-                        Forms\Components\TimePicker::make('jadwal_tutup')->label('Jam Tutup')->required(),
-                    ]),
-                    Forms\Components\TextInput::make('harga_wisata')->label('Harga Tiket')->required()->numeric(),
-                ])
+              Forms\Components\Card::make([
+                Forms\Components\TextInput::make('name_wisata')->label('Nama Wisata'),
+                Forms\Components\RichEditor::make('description')->label('Deskripsi Wisata'),
+                Forms\Components\TextInput::make('price')->label('Harga Wisata')->numeric(),
+                Forms\Components\FileUpload::make('images')->label('Foto Wisata')->image()->multiple(),
+              ])
             ]);
     }
 
@@ -45,37 +39,45 @@ class WisataResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama_wisata')->label('Nama Wisata'),
-                Tables\Columns\TextColumn::make('deskripsi_wisata')->html(),
-                Tables\Columns\TextColumn::make('jadwal_buka')->label('Jadwal Buka'),
-                Tables\Columns\TextColumn::make('jadwal_tutup')->label('Jadwal Tutup'),
-                Tables\Columns\TextColumn::make('harga_wisata')->label('Harga Wisata'),
-                Tables\Columns\TextColumn::make('created_at')->label('Created At'),
-                Tables\Columns\TextColumn::make('updated_at')->label('Updated At'),
+              Tables\Columns\TextColumn::make('name_wisata')->label('Nama Wisata'),
+              Tables\Columns\TextColumn::make('description')->label('Description Wisata')->limit(50),
+              Tables\Columns\TextColumn::make('price')->label('Harga Wisata')->prefix('Rp. '),
+              Tables\Columns\TextColumn::make('created_at')->label('Created At'),
+              Tables\Columns\TextColumn::make('updated_at')->label('Updated At'),
             ])
             ->filters([
-                //
+                Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                // Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\ForceDeleteBulkAction::make(),
+                Tables\Actions\RestoreBulkAction::make(),
             ]);
     }
-
+    
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-
+    
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListWisatas::route('/'),
         ];
+    }    
+    
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }
