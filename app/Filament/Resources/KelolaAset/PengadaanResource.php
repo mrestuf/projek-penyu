@@ -28,17 +28,27 @@ class PengadaanResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('nama_lokasi')
+                Forms\Components\Select::make('lokasi_id')
                     ->options(Lokasi::all()->pluck('nama_lokasi', 'id')->toArray())
-                    ->disablePlaceholderSelection(),
+                    ->label('Nama Lokasi'),
+                Forms\Components\Select::make('user_id')
+                    ->options(User::all()->pluck('name', 'id')->toArray())
+                    ->label('Nama User'),
                 Forms\Components\TextInput::make('nama_aset')
                     ->placeholder('Laptop')
+                    ->label('Nama Aset')
                     ->required(),
                 Forms\Components\TextInput::make('tahun_pengadaan')
                     ->placeholder('2023')
+                    ->label('Tahun Pengadaan')
                     ->required(),
                 Forms\Components\TextInput::make('harga_satuan')
                     ->placeholder('100000')
+                    ->label('Harga Satuan')
+                    ->required(),
+                Forms\Components\TextInput::make('volume')
+                    ->placeholder('10')
+                    ->label('Volume / Jumlah')
                     ->required(),
                 Forms\Components\Select::make('satuan')
                     ->options([
@@ -46,10 +56,7 @@ class PengadaanResource extends Resource
                         'lembar' => 'Lembar',
                         'unit' => 'Unit',
                     ])
-                    ->disablePlaceholderSelection()
-                    ->required(),
-                Forms\Components\TextInput::make('volume')
-                    ->placeholder('10')
+                    ->label('Satuan')
                     ->required(),
             ]);
     }
@@ -59,11 +66,12 @@ class PengadaanResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('lokasi.nama_lokasi')->label('Nama Lokasi'),
+                Tables\Columns\TextColumn::make('user.name')->label('Nama User'),
                 Tables\Columns\TextColumn::make('nama_aset')->label('Nama Aset'),
                 Tables\Columns\TextColumn::make('tahun_pengadaan')->label('Tahun Pengadaan'),
                 Tables\Columns\TextColumn::make('harga_satuan')->label('Harga Satuan'),
+                Tables\Columns\TextColumn::make('volume')->label('Volume / Jumlah'),
                 Tables\Columns\TextColumn::make('satuan')->label('Satuan'),
-                Tables\Columns\TextColumn::make('volume')->label('Volume'),
             ])
             ->filters([
                 //

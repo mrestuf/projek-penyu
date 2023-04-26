@@ -6,20 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Lokasi extends Model
+
+class KategoriBlog extends Model
 {
     use HasFactory, SoftDeletes;
-
     protected $fillable = [
-        'nama_lokasi'
+        'nama_kategory',
     ];
 
-    public function aset()
+    public function blog()
     {
-        return $this->belongsTo(Aset::class, 'id', 'lokasi_id');
-    }
-    public function pengadaan()
-    {
-        return $this->belongsTo(Pengadaan::class, 'id', 'user_id');
+        return $this->belongsTo(Blog::class, 'kategori_blog_id', 'id');
     }
 }

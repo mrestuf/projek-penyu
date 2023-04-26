@@ -32,8 +32,7 @@ class BarangResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('kategori_barang_id')
-                    ->options(KategoriBarang::all()->pluck('kode_kategori', 'id')->toArray())
-                    ->disablePlaceholderSelection(),
+                    ->options(KategoriBarang::all()->pluck('kode_kategori', 'id')->toArray()),
                 Forms\Components\TextInput::make('nama_barang')
                     ->placeholder('Meja')
                     ->required(),

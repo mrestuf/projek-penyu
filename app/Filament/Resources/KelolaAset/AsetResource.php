@@ -36,12 +36,11 @@ class AsetResource extends Resource
                 Forms\Components\TextInput::make('kode_aset')
                     ->placeholder('0000/KAT/THN')
                     ->required(),
-                Forms\Components\Select::make('nama_barang')
+                Forms\Components\Select::make('barang_id')
                     ->options(Barang::all()->pluck('nama_barang', 'id')->toArray())
-                    ->disablePlaceholderSelection(),
-                Forms\Components\Select::make('nama_lokasi')
-                    ->options(Lokasi::all()->pluck('nama_lokasi', 'id')->toArray())
-                    ->disablePlaceholderSelection(),
+                    ->label('Nama Barang'),
+                Forms\Components\Select::make('lokasi_id')
+                    ->options(Lokasi::all()->pluck('nama_lokasi', 'id')->toArray()),
                 Forms\Components\TextInput::make('volume')
                     ->placeholder('10')
                     ->required(),
@@ -51,14 +50,12 @@ class AsetResource extends Resource
                         'lembar' => 'Lembar',
                         'unit' => 'Unit',
                     ])
-                    ->disablePlaceholderSelection()
                     ->required(),
                 Forms\Components\Select::make('kondisi')
                     ->options([
                         'baik' => 'Baik',
                         'rusak' => 'Rusak',
                     ])
-                    ->disablePlaceholderSelection()
                     ->required(),
                 Forms\Components\TextInput::make('umur_ekonomis')
                     ->suffix('Tahun')
@@ -73,7 +70,6 @@ class AsetResource extends Resource
                         'dinas' => 'Dinas',
                         'pemerintah' => 'Pemerintah',
                     ])
-                    ->disablePlaceholderSelection()
                     ->required(),
             ]);
     }
@@ -84,7 +80,7 @@ class AsetResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('kode_aset')->label('Kode Aset'),
                 Tables\Columns\TextColumn::make('barang.nama_barang')->label('Nama Barang'),
-                Tables\Columns\TextColumn::make('volume')->label('Volume'),
+                Tables\Columns\TextColumn::make('volume')->label('Volume / Jumlah'),
                 Tables\Columns\TextColumn::make('nilai_aset')->label('Nilai Aset'),
             ])
             ->filters([
