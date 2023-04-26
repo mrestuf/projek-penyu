@@ -11,8 +11,13 @@ class Wisata extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-      'name_wisatas',
+      'name_wisata',
       'description',
-      'harga'
+      'price',
+      'images'
+    ];
+
+    protected $casts = [
+      'images' => 'array'
     ];
 }

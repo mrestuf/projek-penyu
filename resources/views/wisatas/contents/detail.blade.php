@@ -34,44 +34,45 @@
                     class="flex items-center justify-center w-5 h-5 mr-2 text-xs border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
                     3
                 </span>
-                {{ $wisata->name_wisatas }}
+                {{ $wisata->name_wisata }}
             </li>
         </ol>
 
         <div class="flex flex-wrap md:-m-2 -m-1">
             <div class="grid grid-cols-2 w-full">
-                <div class="md:p-2 p-1">
-                    <img alt="gallery" class="w-full object-cover h-full object-center block"
-                        src="https://dummyimage.com/500x300">
-                </div>
-                <div>
-                    <div class="md:p-2 p-1 w-full">
-                        <img alt="gallery" class="w-full h-full object-cover object-center block"
-                            src="https://dummyimage.com/601x361">
+                @for ($i = 0; $i < count($wisata->images); $i++)
+                    @if ($i == 0)
+                    <div class="md:p-2 p-1">
+                        <img alt="gallery" class="object-cover w-full h-full object-center block"
+                            src="{{ asset('storage/' . $wisata->images[$i]) }}">
                     </div>
-                    <div class="flex">
-                        <div class="md:p-2 p-1 w-1/2">
-                            <img alt="gallery" class="w-full object-cover h-full object-center block"
-                                src="https://dummyimage.com/502x302">
+                    @endif
+                    @if($i == 1)
+                    <div>
+                        <div class="md:p-2 p-1 w-full">
+                            <img alt="gallery" class="w-full h-full object-cover object-center block"
+                                src="{{ asset('storage/' . $wisata->images[$i]) }}">
                         </div>
-                        <div class="md:p-2 p-1 w-1/2">
-                            <img alt="gallery" class="w-full object-cover h-full object-center block"
-                                src="https://dummyimage.com/502x302">
-                        </div>
-                        <div class="md:p-2 p-1 w-1/2">
-                            <img alt="gallery" class="w-full object-cover h-full object-center block"
-                                src="https://dummyimage.com/502x302">
+                        <div class="flex">
+                            @endif
+                            @if($i > 1)
+                            <div class="md:p-2 p-1 w-1/2">
+                                <img alt="gallery" class="w-full object-cover h-full object-center block"
+                                    src="{{ asset('storage/' . $wisata->images[$i]) }}">
+                            </div>
+                            @endif
+                            @endfor
                         </div>
                     </div>
-                </div>
             </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-6 gap-5">
             <div class="py-3 lg:py-10 lg:col-span-4">
                 <div class="flex justify-between">
-                  <h1 class="text-2xl md:text-4xl font-semibold">{{ $wisata->name_wisatas }}</h1>
-                  <h1 class="text-2xl md:text-3xl font-semibold">{{ \App\Helpers\PriceFormat::price($wisata->harga) }}/Tiket</h1>
+                    <h1 class="text-1xl md:text-4xl font-semibold">{{ $wisata->name_wisata }}</h1>
+                    <h1 class="text-1xl md:text-3xl font-semibold">
+                        {{ \App\Helpers\PriceFormat::price($wisata->price) }}/Tiket</h1>
                 </div>
                 <div class="flex items-center">
                     <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
@@ -87,7 +88,7 @@
                         class="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">73
                         reviews</a>
                 </div>
-                <p class="mt-10">{!! $wisata->description !!}</p>
+                <p class="mt-10 text-sm">{!! $wisata->description !!}</p>
             </div>
 
             <div class="lg:col-span-2">
@@ -104,6 +105,7 @@
                             <!-- Card body -->
                             <div class="bg-gray-100 px-5 py-6">
                                 <h1 class="my-3 text-left text-lg font-semibold">Detail Transaction</h1>
+                                @if (Auth::check())
                                 <form action="/wisata/{{ $wisata->id }}/invoice" method="POST" class="space-y-3">
                                     @csrf
 
@@ -116,16 +118,29 @@
                                             placeholder="3" required>
                                     </div>
 
-                                    @if (Auth::check())
                                     <button type="submit"
                                         class="font-semibold text-sm inline-flex items-center justify-center px-3 py-2 border border-transparent rounded leading-5 shadow transition duration-150 ease-in-out w-full bg-indigo-500 hover:bg-indigo-600 text-white focus:outline-none focus-visible:ring-2">Pay
                                         Now</button>
-                                    @else
+                                </form>
+                                @else
+                                <form action="#" method="POST" class="space-y-3">
+                                    @csrf
+
+                                    <div class="mb-6">
+                                        <label for="phone"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total
+                                            Ticket</label>
+                                        <input type="number" id="phone" name="price"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="3" required>
+                                    </div>
+
                                     <a href="/auth/login"
                                         class="font-semibold text-sm inline-flex items-center justify-center px-3 py-2 border border-transparent rounded leading-5 shadow transition duration-150 ease-in-out w-full bg-indigo-500 hover:bg-indigo-600 text-white focus:outline-none focus-visible:ring-2">Pay
                                         Now</a>
-                                    @endif
                                 </form>
+
+                                @endif
                             </div>
                         </div>
                     </div>

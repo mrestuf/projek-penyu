@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('wisatas', function (Blueprint $table) {
             $table->id();
-            $table->string('name_wisatas');
+            $table->string('name_wisata');
             $table->text('description');
-            $table->text('harga');
+            $table->json('images');
+            $table->text('price');
             $table->timestamps();
             $table->softDeletes();
         });

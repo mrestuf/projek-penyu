@@ -28,11 +28,11 @@ class TransactionController extends Controller
 
     $params = [ 
       'external_id' => 'go-wisata' . uniqid(),
-      'amount' => $request->price * $wisata->harga,
-      'description' => 'Invoice Demo Go-Wisata Pemesanan Tiket Wisata ' . $wisata->name_wisatas, 
+      'amount' => $request->price * $wisata->price,
+      'description' => 'Invoice Demo Go-Wisata Pemesanan Tiket Wisata ' . $wisata->name_wisata, 
       'invoice_duration' => 86400, // Exp. 1 Day
       'currency' => 'IDR',
-      "success_redirect_url" => 'https://beef-103-135-226-20.ngrok-free.app/user/dashboard'
+      "success_redirect_url" => 'https://4826-103-135-226-20.ngrok-free.app/user/dashboard'
     ];
 
     
@@ -42,6 +42,7 @@ class TransactionController extends Controller
       
       $transaction = new Transaction([
         'user_id' => $request->user()->id,
+        'wisata_id' => $wisata->id,
         'transaction_id' => $createInvoice['id'],
         'external_id' => $createInvoice['external_id'],
         'status' => $createInvoice['status'],

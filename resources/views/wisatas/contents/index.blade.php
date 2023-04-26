@@ -43,7 +43,7 @@
         <a href="/wisata/{{ $wisata->id }}/detail">
           <div class="cursor-pointer rounded-xl bg-white p-3 shadow-lg hover:shadow-xl">
             <div class="relative flex items-end overflow-hidden rounded-xl">
-              <img src="https://thumbnails.production.thenounproject.com/gA9eZOvsBYSHrMumgrslmRGoBto=/fit-in/1000x1000/photos.production.thenounproject.com/photos/BCBA88B6-5B41-4B50-A786-E60CAA0ECDA3.jpg" alt="wallpaper" />
+              <img src="{{ asset('storage/' . $wisata->images[0]) }}" alt="wallpaper" />
           
               <div class="absolute bottom-3 left-3 inline-flex items-center rounded-lg bg-white p-2 shadow-md">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
@@ -55,11 +55,11 @@
             </div>
           
             <div class="mt-1 p-2">
-              <h2 class="text-slate-700">{{ $wisata->name_wisatas }}</h2>
+              <h2 class="text-slate-700">{{ $wisata->name_wisata }}</h2>
           
               <div class="mt-3 flex items-end justify-between">
                 <p>
-                  <span class="text-lg font-bold text-orange-500">IDR {{ $wisata->harga }}</span>
+                  <span class="text-lg font-bold text-orange-500">{{ \App\Helpers\PriceFormat::price($wisata->price) }}</span>
                   <span class="text-sm text-slate-400">/ticket</span>
                 </p>
               </div>

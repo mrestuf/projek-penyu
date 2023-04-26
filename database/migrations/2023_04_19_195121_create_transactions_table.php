@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('wisata_id')->constrained()->onDelete('cascade');
             $table->string('transaction_id')->unique();
             $table->string('external_id')->unique();
             $table->string('status');

@@ -66,11 +66,11 @@
                 </div>
               
                 <div class="mt-1 p-2">
-                  <h2 class="text-slate-700 font-normal">{{ $wisata->name_wisatas }}</h2>
+                  <h2 class="text-slate-700 font-normal">{{ $wisata->name_wisata }}</h2>
               
                   <div class="mt-3 flex items-end justify-between">
                     <p>
-                      <span class="text-lg font-bold text-orange-500">IDR {{ $wisata->harga }}</span>
+                      <span class="text-lg font-bold text-orange-500">{{ \App\Helpers\PriceFormat::price($wisata->price) }}</span>
                       <span class="text-sm text-slate-400">/ticket</span>
                     </p>
                   </div>

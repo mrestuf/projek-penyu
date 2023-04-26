@@ -12,7 +12,7 @@ class WisatasCard extends Component
 
     public function render(Wisata $wisata)
     {
-      $wisatas = $wisata->where('name_wisatas', 'like', '%'.$this->search.'%')->take($this->count)->get();
+      $wisatas = $wisata->where('name_wisata', 'like', '%'.$this->search.'%')->take($this->count)->get();
       $total_wisatas = $wisata->count();
 
         return view('livewire.wisatas.wisatas-card', compact('wisatas', 'total_wisatas'));

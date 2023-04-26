@@ -21,17 +21,18 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome')->name('home');
 
 Route::prefix('auth')->group(function() {
-  Route::controller(AuthenticationController::class)->middleware('guest:web,admin')->group(function() {
+  Route::controller(AuthenticationController::class)->middleware('guest:web')->group(function() {
     Route::get('/login', 'loginUser');
     Route::get('/register', 'registerUser');
   });
 });
 
 
-Route::middleware('auth:web,admin')->group(function() {
+Route::middleware('auth:web')->group(function() {
   Route::prefix('user')->group(function() {
     Route::controller(UserController::class)->group(function() {
       Route::get('/dashboard', 'index');
+      Route::get('/purchases/list', 'purchasesList');
     });
 
   });
