@@ -32,7 +32,7 @@ class TransactionController extends Controller
       'description' => 'Invoice Demo Go-Wisata Pemesanan Tiket Wisata ' . $wisata->name_wisata, 
       'invoice_duration' => 86400, // Exp. 1 Day
       'currency' => 'IDR',
-      "success_redirect_url" => 'https://4826-103-135-226-20.ngrok-free.app/user/dashboard'
+      "success_redirect_url" => 'https://3094-103-135-226-20.ngrok-free.app/user/purchases/list'
     ];
 
     
