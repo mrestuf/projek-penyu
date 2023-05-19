@@ -17,7 +17,7 @@
   {{-- STYLES --}}
   @livewireStyles
   @stack('styles')
-  @vite(['resources/sass/ap.scss', 'resources/js/app.js'])
+  @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
   @include('layouts.header')

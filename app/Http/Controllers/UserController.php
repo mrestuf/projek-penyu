@@ -23,4 +23,9 @@ class UserController extends Controller
     return view('dashboard.user.contents.purchases-list', compact('transactions'));
   }
 
+  public function review(Request $request)
+  {
+    dd($request->all());
+  }
+
 }

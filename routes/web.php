@@ -33,6 +33,7 @@ Route::middleware('auth:web')->group(function() {
     Route::controller(UserController::class)->group(function() {
       Route::get('/dashboard', 'index');
       Route::get('/purchases/list', 'purchasesList');
+      Route::post('/review', 'review');
     });
 
   });

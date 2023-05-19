@@ -45,10 +45,8 @@ class BlogResource extends Resource
                     Forms\Components\FileUpload::make('gambar')
                         ->label('Gambar')
                         ->image()
-                        ->disk('public')
                         ->directory('img-blog')
-                        ->visibility('public')
-                        ->imagePreviewHeight('250'),
+                        ->visibility('public'),
                 ])
             ]);
     }
@@ -59,7 +57,7 @@ class BlogResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('judul_blog')->label('Judul'),
                 Tables\Columns\TextColumn::make('kategori_blog.nama_kategory')->label('Kategory'),
-                ImageColumn::make('gambar')->disk('public')->size(100)
+                ImageColumn::make('gambar')->size(100)
             ])
             ->filters([
                 //
