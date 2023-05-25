@@ -12,7 +12,7 @@
             <!-- Right column container with form -->
             <div class="md:w-8/12 lg:ml-6 lg:w-5/12">
                 @livewire('authentication.register')
-                <p>Have an account? <a href="login" class="text-blue-500">Login</a></p>
+                <p>Sudah memiliki akun? <a href="login" class="text-blue-500">Login</a></p>
             </div>
         </div>
     </div>

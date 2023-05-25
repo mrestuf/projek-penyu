@@ -16,8 +16,8 @@
       <div class="md:w-8/12 lg:ml-6 lg:w-5/12">
         @livewire('authentication.login')
         <p>
-          Don't have an account?
-          <a class="text-blue-500" href="register">Register</a>
+          Belum memiliki akun?
+          <a class="text-blue-500" href="register">Daftar</a>
         </p>
       </div>
     </div>

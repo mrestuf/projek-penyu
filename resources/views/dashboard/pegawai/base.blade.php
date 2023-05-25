@@ -20,18 +20,15 @@
   @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-  @include('layouts.header')
-  
-  
-  <main class="flex lg:flex-row flex-col container mx-auto my-5 px-5 lg:px-0">
-    @include('dashboard.user.layouts.sidebar')
+  <main>
+    <div class="flex">
+      @include('dashboard.pegawai.layouts.sidebar')
     <div class="ml-0 lg:ml-10 w-full">
       @yield('content')
     </div>
+    </div>
+    
   </main>
-
-  @include('layouts.footer')
-
   @livewireScripts
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
